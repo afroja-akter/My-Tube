@@ -5,7 +5,12 @@ function loadCategories(){
 }
 
 function dataCategories(categories){
-    console.log(categories);
+    const categoryContainer = document.getElementById('category-container');
+    for(let cat of categories){
+        const categoryDiv = document.createElement('div')
+        categoryDiv.innerHTML = `<button class=" btn btn-sm">${cat.category}</button>`;
+        categoryContainer.appendChild(categoryDiv);
+    }
 }
 
 loadCategories()
