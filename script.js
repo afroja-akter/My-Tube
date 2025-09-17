@@ -28,25 +28,35 @@ function loadVideos(){
 // Display Videos
 
 const displayVideos = (videos) => {
-    console.log(videos);
+    // console.log(videos);
     const videosContainer = document.getElementById("video-container");
      videos.forEach((video) => {
         const videoCart = document.createElement("div");
         videoCart.innerHTML = `
         
-        <div class="card bg-base-100 w-96 shadow-sm">
-        <figure>
-            <img
-            src="${video.thumbnail}"
-            alt="Shoes" />
-        </figure>
-        <div class="card-body">
-            <h2 class="card-title">${video.title}</h2>
-            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-            <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
+        <div class="card bg-base-100">
+            <figure class="relative">
+                <img class="w-full h-[250px] object.cover"
+                src="${video.thumbnail}"
+                alt="Shoes" />
+                <span class="text-sm text-white bg-black rounded p-2 absolute bottom-2 right-2 ">3hrs 56 min ago</span>
+            </figure>
+            <div class="flex gap-3 p-3">
+                <div class="profile">
+                <div class="avatar">
+                    <div class="ring-primary ring-offset-base-100 w-6 rounded-full ring-2 ring-offset-2">
+                        <img src="${video.authors[0].profile_picture}" />
+                    </div>
+                    </div>
+                </div>
+                <div class="info">
+                <h2 class="text-sm font-semibold">${video.title}</h2>
+                <p class="text-sm text-gray-400 flex">${video.authors[0].profile_name}
+                    <img src="https://cdn-icons-png.flaticon.com/128/15050/15050690.png" alt="" class="w-5 h-5">
+                </p>
+                <p class="text-sm text-gray-400 flex">${video.others.views} views</p>
+                </div>
             </div>
-        </div>
         </div>
         `
         videosContainer.appendChild(videoCart)
