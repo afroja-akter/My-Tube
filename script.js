@@ -1,3 +1,13 @@
+// remove active class from buttons
+
+function removeActiveClass(){
+    const activeButtons = document.getElementsByClassName("active");
+    for (let btn of activeButtons){
+        btn.classList.remove("active");
+    }
+}
+
+
 // Fetch API catagories
 
 function loadCategories(){
@@ -23,7 +33,11 @@ function dataCategories(categories){
 function loadVideos(){
     fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
     .then((response) => response.json())
-    .then((data) => displayVideos(data.videos));
+    .then((data) => {
+        removeActiveClass()
+        document.getElementById("btn-all").classList.add('active');
+        displayVideos(data.videos)
+    });
 }
 
 // Fetch categories video
@@ -33,6 +47,7 @@ const loadCategoriesVideo = (id) =>{
     fetch(url)
     .then((res)=>res.json())
     .then((data)=> {
+        removeActiveClass();
         const clickedBtn = document.getElementById(`btn-${id}`);
         clickedBtn.classList.add("active");
         displayVideos(data.category)
@@ -45,7 +60,7 @@ const displayVideos = (videos) => {
     // console.log(videos);
     const videosContainer = document.getElementById("video-container");
     videosContainer.innerHTML = '';
-    
+
     if(videos.length == 0){
         videosContainer.innerHTML =`
         <div class="py-20 col-span-full flex flex-col justify-center items-center text center">
