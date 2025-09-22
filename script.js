@@ -40,6 +40,15 @@ const displayVideos = (videos) => {
     // console.log(videos);
     const videosContainer = document.getElementById("video-container");
     videosContainer.innerHTML = '';
+    if(videos.length == 0){
+        videosContainer.innerHTML =`
+        <div class="py-20 col-span-full flex flex-col justify-center items-center text center">
+            <img class="w-[150px]" src="/img/Icon.png" alt="">
+            <h2 class="text-2xl font-bold">Oops!! Sorry there is no content here</h2>
+        </div>
+        `
+        return;
+    }
      videos.forEach((video) => {
         const videoCart = document.createElement("div");
         videoCart.innerHTML = `
