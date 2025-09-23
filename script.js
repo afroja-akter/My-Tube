@@ -42,13 +42,15 @@ function loadVideos(){
 
 function loadVideoDetails(videoId){
     console.log(videoId);
-    // fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
-    // .then((response) => response.json())
-    // .then((data) => {
-    //     removeActiveClass()
-    //     document.getElementById("btn-all").classList.add('active');
-    //     displayVideos(data.videos)
-    // });
+    fetch("https://openapi.programming-hero.com/api/phero-tube/video/${videoId}")
+    .then((response) => response.json())
+    .then((data) => 
+        displayVideosDetails(data.video)
+    );
+}
+
+const displayVideosDetails = (video) => {
+    document.getElementById('video_details').showModal();
 }
 
 // Fetch categories video
