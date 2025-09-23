@@ -40,19 +40,6 @@ function loadVideos(){
     });
 }
 
-function loadVideoDetails(videoId){
-    console.log(videoId);
-    fetch("https://openapi.programming-hero.com/api/phero-tube/video/${videoId}")
-    .then((response) => response.json())
-    .then((data) => 
-        displayVideosDetails(data.video)
-    );
-}
-
-const displayVideosDetails = (video) => {
-    document.getElementById('video_details').showModal();
-}
-
 // Fetch categories video
 
 const loadCategoriesVideo = (id) =>{
@@ -117,6 +104,35 @@ const displayVideos = (videos) => {
      });
 }
 
+// Fetch video details
+function loadVideoDetails(videoId){
+    console.log(videoId);
+    const url = ` https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`;
+    fetch(url)
+    .then((response)=>response.json())
+    .then((data) => 
+        displayVideosDetails(data.video)
+    );
+}
+
+// display video details in modal
+
+const displayVideosDetails = (video) => {
+    console.log(video);
+    document.getElementById('video_details').showModal();
+    const detailsContainer = document.getElementById('details-container');
+    detailsContainer.innerHTML= `
+    <div class="card bg-base-100">
+            <figure class="relative">
+                <img class="w-full h-[250px] object.cover"
+                src="${video.thumbnail}"
+                alt="Shoes" />
+                <span class="text-sm text-white bg-black rounded p-2 absolute bottom-2 right-2 ">3hrs 56 min ago</span>
+            </figure>
+        <h2>${video.title}</h2>
+    </div>
+    `;
+};
 
 loadCategories();
 
