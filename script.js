@@ -91,8 +91,9 @@ const displayVideos = (videos) => {
                 </div>
                 <div class="info">
                 <h2 class="text-sm font-semibold">${video.title}</h2>
-                <p class="text-sm text-gray-400 flex">${video.authors[0].profile_name}
-                    <img src="https://cdn-icons-png.flaticon.com/128/15050/15050690.png" alt="" class="w-5 h-5">
+                <p class="text-sm text-gray-400 flex">
+                    ${video.authors[0].profile_name}
+                    ${video.authors[0].verified == true ? `<img src="https://cdn-icons-png.flaticon.com/128/15050/15050690.png" alt="" class="w-7 h-7 p-1">`:``}
                 </p>
                 <p class="text-sm text-gray-400 flex">${video.others.views} views</p>
                 </div>
